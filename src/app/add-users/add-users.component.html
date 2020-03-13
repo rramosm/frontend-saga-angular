@@ -1,0 +1,74 @@
+<div class="example-container mat-elevation-z8">
+  <h2>Add User</h2>
+  <div class="example-loading-shade"
+        *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/users']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="usersForm" (ngSubmit)="onFormSubmit()">
+	  <mat-form-field class="example-full-width">
+        <mat-label>Project</mat-label>
+        <mat-select formControlName="projectId">
+          <mat-option *ngFor="let gl of dataProjects" [value]="gl.id">
+            {{gl.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          <span *ngIf="!usersForm.get('projectId').valid && usersForm.get('projectId').touched">Please choose Project</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!usersForm.get('name').valid && usersForm.get('name').touched">Please enter Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Surname</mat-label>
+        <input matInput placeholder="Surname" formControlName="surname"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!usersForm.get('surname').valid && usersForm.get('surname').touched">Please enter Surname</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Document Type</mat-label>
+        <mat-select formControlName="documentTypeEnum">
+          <mat-option *ngFor="let sl of docTypeList" [value]="sl">
+            {{sl}}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          <span *ngIf="!usersForm.get('documentTypeEnum').valid && usersForm.get('documentTypeEnum').touched">Please enter Document Type</span>
+        </mat-error>
+      </mat-form-field> 
+      <mat-form-field class="example-full-width">
+        <mat-label>Document Number</mat-label>
+        <input matInput placeholder="Document Number" formControlName="documentNumber"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!usersForm.get('documentNumber').valid && usersForm.get('documentNumber').touched">Please enter Document Number</span>
+        </mat-error>
+      </mat-form-field>  
+      <mat-form-field class="example-full-width">
+        <mat-label>Active</mat-label>
+        <mat-select formControlName="active">
+          <mat-option *ngFor="let sl of activeList" [value]="sl">
+            {{sl}}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          <span *ngIf="!usersForm.get('active').valid && usersForm.get('active').touched">Please select Active</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!usersForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+      </div>
+    </form>
+  </mat-card>
+</div>

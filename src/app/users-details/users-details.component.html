@@ -1,0 +1,32 @@
+<div class="example-container mat-elevation-z8">
+  <h2>POC Azure Users Details</h2>
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/users']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-content>
+      <dl>
+        <dt>Name:</dt>
+        <dd>{{users.name}}</dd>	  
+        <dt>Surname:</dt>
+        <dd>{{users.surname}}</dd>	  
+        <dt>Document Type:</dt>
+        <dd>{{users.documentTypeEnum}}</dd>	  
+        <dt>Document Number:</dt>
+        <dd>{{users.documentNumber}}</dd>	  
+        <dt>Project:</dt>
+        <dd>{{users.projectDesc}}</dd>	  
+        <dt>Active:</dt>
+        <dd>{{users.active}}</dd>
+      </dl>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-flat-button color="primary" [routerLink]="['/edit-users', users.userId]"><mat-icon>edit</mat-icon> Users</a>
+      <a mat-flat-button color="warn" (click)="deleteUsers(users.userId)"><mat-icon>delete</mat-icon> Users</a>
+    </mat-card-actions>
+  </mat-card>
+</div>
