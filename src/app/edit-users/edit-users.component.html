@@ -12,8 +12,8 @@
 	  <mat-form-field class="example-full-width">
         <mat-label>Project</mat-label>
         <mat-select formControlName="projectId">
-          <mat-option *ngFor="let gl of projectList" [value]="gl">
-            {{gl}}
+          <mat-option *ngFor="let gl of dataProjects" [value]="gl.id">
+            {{gl.name}}
           </mat-option>
         </mat-select>
         <mat-error>
