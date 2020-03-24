@@ -7,12 +7,12 @@ import { Projects } from './projects';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'Basic U0FHQV9VU0VSOlNBR0FfUFdE',
+    'Ocp-Apim-Subscription-Key': 'XXXXXXXXXXXXXXXXXXXX',
+    'Ocp-Apim-Trace': 'true'
   })
 };
-const apiUrl = 'http://52.188.137.175:8081';
-const apiProjectUrl = 'http://52.146.61.139:8082';
+const apiSecurityUrl = 'https://XXXXXXXXX.azure-api.net/hbin';
+const apiProjectUrl = 'https://XXXXXXXXX.azure-api.net/hbin';
 
 @Injectable({
   providedIn: 'root'
