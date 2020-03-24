@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
+import { Projects } from '../projects';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -33,10 +34,12 @@ export class EditUsersComponent implements OnInit {
   activeList = [true, false];
   isLoadingResults = false;
   matcher = new MyErrorStateMatcher();
+  dataProjects: Projects[] = [];  
 
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.getProjects();    
     this.getUsersById(this.route.snapshot.params.userId);
     this.usersForm = this.formBuilder.group({
 	    projectId : [null, Validators.required],
@@ -80,5 +83,17 @@ export class EditUsersComponent implements OnInit {
   usersDetails() {
     this.router.navigate(['/users-details', this.userId]);
   }
+
+  getProjects(): void {
+    this.api.getProjects()
+    .subscribe((res: any) => {
+      this.dataProjects = res.projects;
+      console.log(this.dataProjects);
+      this.isLoadingResults = false;
+    }, err => {
+      console.log(err);
+      this.isLoadingResults = false;
+    });
+  }  
 
 }
